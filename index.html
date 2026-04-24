@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Enrique Zambrano · Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --purple: #7c5ff5;
+      --purple-dark: #5b3fd8;
+      --teal: #1eb4a0;
+      --bg: #0a0a0f;
+      --text: #e8e6f0;
+      --muted: rgba(232,230,240,0.45);
+      --border: rgba(255,255,255,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Background */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 80% 10%, rgba(99,60,220,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 10% 80%, rgba(30,180,160,0.10) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    /* Nav */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.4rem 3rem;
+      border-bottom: 1px solid var(--border);
+      position: relative; z-index: 100;
+      backdrop-filter: blur(8px);
+      position: sticky; top: 0;
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 18px;
+      color: #fff; letter-spacing: -0.5px;
+    }
+    .nav-logo span { color: var(--purple); }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      font-size: 13px; color: rgba(255,255,255,0.45);
+      text-decoration: none; letter-spacing: 0.4px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
+
+    /* Layout */
+    .container { max-width: 860px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 5; }
+    .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent); }
+    .section { padding: 3.5rem 0; }
+    .section-label {
+      font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+      color: rgba(255,255,255,0.28); margin-bottom: 1.5rem;
+      font-family: 'Syne', sans-serif;
+    }
+
+    /* Hero */
+    .hero { padding: 5rem 0 3.5rem; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(124,95,245,0.1);
+      border: 1px solid rgba(124,95,245,0.28);
+      border-radius: 20px; padding: 6px 16px;
+      font-size: 12px; color: #b09af8;
+      margin-bottom: 1.8rem; letter-spacing: 0.4px;
+    }
+    .hero-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--purple);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.8rem, 6vw, 4.2rem);
+      font-weight: 800; line-height: 1.05;
+      color: #fff; margin-bottom: 0.6rem;
+      letter-spacing: -2px;
+    }
+    h1 span {
+      background: linear-gradient(135deg, var(--purple), var(--teal));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 16px; color: var(--muted);
+      font-weight: 300; margin-bottom: 2.4rem;
+      line-height: 1.75; max-width: 520px;
+    }
+    .hero-sub strong { color: rgba(255,255,255,0.72); font-weight: 400; }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+      color: #fff; font-size: 14px; font-weight: 500;
+      padding: 12px 24px; border-radius: 10px;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.14);
+      color: rgba(255,255,255,0.55); font-size: 14px;
+      padding: 12px 24px; border-radius: 10px;
+      text-decoration: none; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.35); color: #fff; }
+
+    /* Stats */
+    .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 14px; }
+    .stat-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.2rem 1.5rem;
+    }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 28px; font-weight: 700; color: #fff;
+    }
+    .stat-desc { font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 3px; }
+
+    /* Skills */
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill-card {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px; padding: 10px 18px;
+      transition: all 0.2s; cursor: default;
+    }
+    .skill-card:hover {
+      background: rgba(124,95,245,0.1);
+      border-color: rgba(124,95,245,0.3);
+      transform: translateY(-2px);
+    }
+    .skill-card img { width: 22px; height: 22px; }
+    .skill-card span { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.8); }
+
+    /* About */
+    .about-text {
+      font-size: 15px; line-height: 1.85;
+      color: rgba(255,255,255,0.48); max-width: 600px;
+    }
+    .about-text strong { color: rgba(255,255,255,0.78); font-weight: 400; }
+
+    /* Contact */
+    .contact-grid { display: flex; flex-direction: column; gap: 10px; max-width: 560px; }
+    .contact-item {
+      display: flex; align-items: center; gap: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 14px 18px;
+      transition: background 0.2s;
+    }
+    .contact-item:hover { background: rgba(255,255,255,0.06); }
+    .contact-icon {
+      width: 36px; height: 36px; border-radius: 9px;
+      background: rgba(124,95,245,0.14);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px; flex-shrink: 0;
+    }
+    .contact-label {
+      font-size: 10px; color: rgba(255,255,255,0.28);
+      letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px;
+    }
+    .contact-val { font-size: 14px; color: rgba(255,255,255,0.7); }
+
+    /* Footer */
+    footer {
+      padding: 1.5rem 3rem;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      position: relative; z-index: 5;
+    }
+    .footer-txt { font-size: 12px; color: rgba(255,255,255,0.2); }
+    .footer-badge {
+      font-size: 11px; color: rgba(124,95,245,0.7);
+      background: rgba(124,95,245,0.08);
+      border: 1px solid rgba(124,95,245,0.18);
+      border-radius: 20px; padding: 5px 14px;
+    }
+
+    /* Animations */
+    .fade-in { opacity: 0; transform: translateY(20px); animation: fadeUp 0.6s ease forwards; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.22s; }
+    .delay-3 { animation-delay: 0.34s; }
+    .delay-4 { animation-delay: 0.46s; }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.5rem; }
+      .container { padding: 0 1.25rem; }
+      .hero { padding: 3rem 0 2rem; }
+      footer { padding: 1.2rem 1.5rem; flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">EZ<span>.</span></div>
+  <div class="nav-links">
+    <a href="#inicio">Inicio</a>
+    <a href="#habilidades">Habilidades</a>
+    <a href="#sobre-mi">Sobre mí</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-tag fade-in">
+      <div class="hero-dot"></div>
+      Estudiante activo · 4to semestre
+    </div>
+    <h1 class="fade-in delay-1">Enrique<br/><span>Zambrano</span></h1>
+    <p class="hero-sub fade-in delay-2">
+      Estudiante de <strong>Ingeniería en Software</strong> en la Universidad Técnica de Ambato · FISEI.<br/>
+      Apasionado por construir soluciones con código limpio y buenas prácticas.
+    </p>
+    <div class="hero-btns fade-in delay-3">
+      <a class="btn-primary" href="https://github.com/Kikessj710" target="_blank">Ver mis repositorios ↗</a>
+      <a class="btn-ghost" href="mailto:rzambrano@uta.edu.ec">rzambrano@uta.edu.ec</a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- STATS -->
+  <section class="section">
+    <div class="section-label">En números</div>
+    <div class="stats-row">
+      <div class="stat-box"><div class="stat-num">4°</div><div class="stat-desc">Semestre activo</div></div>
+      <div class="stat-box"><div class="stat-num">3+</div><div class="stat-desc">Lenguajes dominados</div></div>
+      <div class="stat-box"><div class="stat-num">UTA</div><div class="stat-desc">Universidad · FISEI</div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SKILLS -->
+  <section class="section" id="habilidades">
+    <div class="section-label">Tecnologías y lenguajes</div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"/>
+        <span>Java</span>
+      </div>
+      <div class="skill-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"/>
+        <span>JavaScript</span>
+      </div>
+      <div class="skill-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"/>
+        <span>Python</span>
+      </div>
+      <div class="skill-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"/>
+        <span>Git</span>
+      </div>
+      <div class="skill-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style="filter:invert(1)"/>
+        <span>GitHub</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SOBRE MI -->
+  <section class="section" id="sobre-mi">
+    <div class="section-label">Sobre mí</div>
+    <p class="about-text">
+      Soy <strong>Enrique Zambrano</strong>, estudiante de cuarto semestre de Ingeniería en Software en la
+      <strong>Facultad de Ingeniería en Sistemas, Electrónica e Industrial (FISEI)</strong> de la
+      Universidad Técnica de Ambato. Me apasiona el desarrollo de software y estoy en constante
+      aprendizaje de nuevas tecnologías. En este portafolio encontrarás mis proyectos académicos
+      y prácticas desarrolladas durante mi formación profesional.
+    </p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTACTO -->
+  <section class="section" id="contacto">
+    <div class="section-label">Contacto</div>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="contact-icon">📧</div>
+        <div>
+          <div class="contact-label">Correo institucional</div>
+          <div class="contact-val">rzambrano@uta.edu.ec</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🏫</div>
+        <div>
+          <div class="contact-label">Universidad</div>
+          <div class="contact-val">Universidad Técnica de Ambato — FISEI</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">💻</div>
+        <div>
+          <div class="contact-label">GitHub</div>
+          <div class="contact-val">github.com/Kikessj710</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Ubicación</div>
+          <div class="contact-val">Ambato, Ecuador</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <span class="footer-txt">© 2025 Enrique Zambrano · Kikessj710</span>
+  <span class="footer-badge">Ingeniería en Software · UTA</span>
+</footer>
+
+</body>
+</html>
